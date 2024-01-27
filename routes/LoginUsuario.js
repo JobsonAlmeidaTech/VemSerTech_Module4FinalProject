@@ -36,18 +36,18 @@ routeLoginUsuario.post("/loginUsuario", async (req, res)=>{
     try{
         const secret = process.env.SECRET
 
-        const token = jwt.sign(
-          {
-          id: user._id
-          },
-          secret)
+        const token = jwt.sign({
+            id: user.id,
+            name: user.name,
+            email: user.email
+        }, secret)
       
-          res.status(200).json({
+        res.status(200).json({
             msg: "Autenticação realizada com sucesso",
             token: token
-          })
+        })
       
-       }
+    }
     catch(error){
         console.log(error)
         res.status(500).json({msg: "Aconteceu um erro no servidor. Tente mais tarde!"})

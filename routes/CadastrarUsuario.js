@@ -26,7 +26,7 @@ routeCadastrarUsuario.post("/cadastrarUsuario", async (req, res) => {
     const userExists = await User.findOne({email: email})
 
     if(userExists){
-        return res.status(422).json({msg: "Por favor, utilize outro email!"})
+        return res.status(422).json({msg: "Usuário já existente no sistema! Utilize outro email!"})
     }
 
     //creating password
@@ -64,8 +64,8 @@ routeCadastrarUsuario.post("/cadastrarUsuario", async (req, res) => {
             id: idUser
         })
      
-      }
-      catch(error){
+    }
+    catch(error){
         console.log(error)
         return res.status(500).json({msg: "Aconteceu um erro no servidor ao tentar criar o usuário. Tente mais tarde!"})
     }
