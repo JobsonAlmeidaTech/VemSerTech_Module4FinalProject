@@ -7,7 +7,7 @@ const fs = require("fs")
 const path = require("path")
 const upload =  require("../configurations/MulterConfigurations") 
 
-routeEditarProduto.post("/editarProduto", checkAuthentication, upload.single("photo"), async (req, res)=>{
+routeEditarProduto.put("/editarProduto", checkAuthentication, upload.single("photo"), async (req, res)=>{
 
     const {ISBN, newTitle, newCategory, NewISBN} = req.body
 
@@ -52,7 +52,7 @@ routeEditarProduto.post("/editarProduto", checkAuthentication, upload.single("ph
         await recoveredBook.save()  
     
         res.status(201).json({
-            msg: "Livro cadastrado com sucesso!",
+            msg: "Livro editado com sucesso!",
         })
      
     }
