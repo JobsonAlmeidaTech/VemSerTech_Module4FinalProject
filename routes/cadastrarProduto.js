@@ -43,7 +43,7 @@ routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.sing
             }
         })
 
-        return res.status(422).json({msg: "O usuário já possui esse livro cadastrado no sistema. Utilize outro ISBN."})
+        return res.status(422).json({msg: `O usuário já possui o livro com ISBN ${ISBN} cadastrado no sistema. Utilize outro ISBN.`})
     }
 
     //creating book
@@ -60,7 +60,7 @@ routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.sing
         await book.save()
     
         res.status(201).json({
-            msg: "Livro criado com sucesso!",
+            msg: "Livro cadastrado com sucesso!",
         })
      
     }

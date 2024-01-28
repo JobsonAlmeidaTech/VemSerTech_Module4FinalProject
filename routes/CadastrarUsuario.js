@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
  
 routeCadastrarUsuario.post("/cadastrarUsuario", async (req, res) => {
 
-    const {name, email, password, confirmpassword} = req.body
+    const {name, email, password, confirmPassword} = req.body
  
     //validations
     if(!name){
@@ -18,7 +18,7 @@ routeCadastrarUsuario.post("/cadastrarUsuario", async (req, res) => {
         return res.status(422).json({msg: "A senha é obrigatória!"})
     }
     
-    if(password !== confirmpassword){
+    if(password !== confirmPassword){
         return res.status(422).json({msg: "As senhas não conferem!"})
     }
 
