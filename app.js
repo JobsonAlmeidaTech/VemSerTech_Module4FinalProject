@@ -4,6 +4,7 @@ const routeCadastrarUsuario = require("./routes/CadastrarUsuario")
 const routeLoginUsuario = require("./routes/LoginUsuario")
 const routeCadastrarProduto = require("./routes/cadastrarProduto")
 const routeEditarProduto = require("./routes/EditarProduto")
+const deletarProduto = require("./routes/DeletarProduto")
 const mongooseInit = require("./configurations/MongooseConfigurations")
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(routeCadastrarUsuario)
 app.use(routeLoginUsuario)
 app.use(routeCadastrarProduto)
 app.use(routeEditarProduto)
+app.use(deletarProduto)
 
 //Welcome public route 
 app.get("/", (req, res)=>{     

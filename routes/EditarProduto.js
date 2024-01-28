@@ -32,33 +32,36 @@ routeEditarProduto.put("/editarProduto", checkAuthentication, upload.single("pho
             msg: `O usuário não possui o livro com ISBN ${ISBN} cadastrado no sistema. Utilize outro ISBN.`
         })
     }
-
-    //Updating product
-    if(newTitle)    recoveredBook.title = newTitle
-    if(newCategory) recoveredBook.category = newCategory
-    if(NewISBN)     recoveredBook.ISBN = NewISBN
-    if(req.file) {
-        //Deleting the old photo from uploads folder
-        fs.unlink(path.join(__dirname, "../", "/uploads", recoveredBook.photoName), function(error){
-        if(error){
-            console.log(`Erro ao deletar o arquivo ${req.filename} da pasta uploads`) 
-        }})
-
-        recoveredBook.photoName = req.file.filename 
-    }
-
+    
     try{
 
-        await recoveredBook.save()  
+        //Reading new product's properties
+        if(newTitle)    recoveredBook.title = newTitle
+        if(newCategory) recoveredBook.category = newCategory
+        if(NewISBN)     recoveredBook.ISBN = NewISBN
+        if(req.file)    {            
+            var oldPhotoName = recoveredBook.photoName            
+            recoveredBook.photoName = req.file.filename
+        } 
+        
+        //Updating product in the server
+        await recoveredBook.save()
+        
+        //Deleting the old photo from uploads folder
+        fs.unlink(path.join(__dirname, "../", "/uploads", oldPhotoName), function(error){
+            if(error){
+                console.log("Produto editado no banco de dados, mas a deleção da imagem antiga na pasta uploads falhou. Mensagem de erro: ", error.message)
+            }
+        })
     
         res.status(201).json({
-            msg: "Livro editado com sucesso!",
+            msg: "Produto editado com sucesso!",
         })
      
     }
     catch(error){
         console.log(error)
-        return res.status(500).json({msg: "Aconteceu um erro no servidor ao tentar criar o usuário. Tente mais tarde!"})
+        return res.status(500).json({msg: "Aconteceu um erro no servidor ao tentar editar o usuário. Tente mais tarde!"})
     }
    
 })
