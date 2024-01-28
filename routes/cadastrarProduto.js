@@ -1,25 +1,11 @@
 const express = require("express")
 const routeCadastrarProduto = express.Router()
 const checkAuthentication = require("../passports/checkAuthentication")
-const multer = require("multer")
 const Book = require("../models/Book")
 const jwt = require("jsonwebtoken")
 const fs = require("fs")
 const path = require("path")
-
-//--Configurations:
-    //Multer  
-    const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, './uploads')
-        },
-        filename: function (req, file, cb) {
-            const time = new Date().getTime();
-            cb(null, `${time}_${file.originalname}`)
-        }
-        })
-        const upload = multer({ storage: storage })
-
+const upload =  require("../configurations/MulterConfigurations") 
 
 routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.single("photo"), async (req, res) => {
  
@@ -49,7 +35,7 @@ routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.sing
     //checking if book is already related to the user 
     const relationExists = await Book.findOne({userId: userId, ISBN: ISBN })
 
-    if(relationExists){
+    if(relationExists){ 
 
         fs.unlink(path.join(__dirname, "../", "/uploads", req.file.filename), function(error){
             if(error){
