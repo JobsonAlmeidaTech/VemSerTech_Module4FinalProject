@@ -4,6 +4,8 @@ const checkAuthentication = require("../passports/checkAuthentication")
 const multer = require("multer")
 const Book = require("../models/Book")
 const jwt = require("jsonwebtoken")
+const fs = require("fs")
+const path = require("path")
 
 //--Configurations:
     //Multer  
@@ -20,7 +22,7 @@ const jwt = require("jsonwebtoken")
 
 
 routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.single("photo"), async (req, res) => {
-
+ 
     const {title, category, ISBN} = req.body
 
     //validations
@@ -48,6 +50,13 @@ routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.sing
     const relationExists = await Book.findOne({userId: userId, ISBN: ISBN })
 
     if(relationExists){
+
+        fs.unlink(path.join(__dirname, "../", "/uploads", req.file.filename), function(error){
+            if(error){
+                console.log(`Erro ao deletar o arquivo ${req.filename} da pasta uploads`) 
+            }
+        })
+
         return res.status(422).json({msg: "O usuário já possui esse livro cadastrado no sistema. Utilize outro ISBN."})
     }
 
@@ -56,7 +65,7 @@ routeCadastrarProduto.post("/cadastrarProduto", checkAuthentication, upload.sing
         title,
         category,
         ISBN,
-        photoName: req.filename,
+        photoName: req.file.filename,
         userId: userId
     })
 

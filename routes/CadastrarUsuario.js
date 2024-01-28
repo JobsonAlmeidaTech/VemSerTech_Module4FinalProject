@@ -38,14 +38,11 @@ routeCadastrarUsuario.post("/cadastrarUsuario", async (req, res) => {
     await User.find().count()
     .then((numberOfUsers)=>{
         idUser =  numberOfUsers + 1
-        console.log("idUser then: "+ idUser)
     })
     .catch((error)=>{
         console.log(error)
         return res.status(500).json({msg: "Aconteceu um erro no servidor ao gerar o ID do usuário. Tente mais tarde!"})
     })
-
-    console.log("idUser out: "+ idUser)
     
     //creating a user
     const user = new User({
