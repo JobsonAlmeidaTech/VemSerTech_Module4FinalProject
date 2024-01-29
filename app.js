@@ -6,6 +6,7 @@ const routeCadastrarProduto = require("./routes/cadastrarProduto")
 const routeEditarProduto = require("./routes/EditarProduto")
 const routeDeletarProduto = require("./routes/DeletarProduto")
 const routeListarProduto = require("./routes/ListarProduto")
+const routeDownloadImagemProduto = require("./routes/DownloadImagemProduto")
 const mongooseInit = require("./configurations/MongooseConfigurations")
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(routeCadastrarProduto)
 app.use(routeEditarProduto)
 app.use(routeDeletarProduto)
 app.use(routeListarProduto)
+app.use(routeDownloadImagemProduto)
 
 //Welcome public route 
 app.get("/", (req, res)=>{     
