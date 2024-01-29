@@ -22,7 +22,7 @@ routeDeletarProduto.delete("/deletarProduto", checkAuthentication, async (req, r
     if(!recoveredBook){
 
         return res.status(422).json({
-            msg: `O usuário não possui o livro com ISBN ${ISBN} cadastrado no sistema. Utilize outro ISBN.`
+            msg: `Não há registro do ISBN ${ISBN} informado no sistema. Utilize outro ISBN.`
         })
     }
 

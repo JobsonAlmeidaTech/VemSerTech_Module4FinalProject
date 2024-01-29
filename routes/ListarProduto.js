@@ -8,7 +8,7 @@ routeListarProduto.post("/listarProduto", async (req, res)=>{
 
     if(!category && !userId){
         return  res.status(422).json({
-                    msg: "A categoria do produto ou o id do usuário de ser informado para a busca ser realizada."
+                    msg: "A categoria do produto ou o id do usuário deve ser informado para a busca ser realizada."
                 })
     }
 
