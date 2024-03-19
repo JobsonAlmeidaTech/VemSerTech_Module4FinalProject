@@ -60,12 +60,12 @@ Therefore, each feature will be an api route and the features have the following
 <h3>Download product image</h3>
 <li> When calling the route, the image must be available for download (if testing by insomnia, the image must appear in the return).</li>
 
-<h2>Route rules</h2>
+<h3>Route rules</h3>
 Only the <b>user registration</b>, <b>User login</b>, <b>Product listing for all users</b> and <b>Download product image< routes /b>, must be possible to access without authentication, all others will only be allowed access, with the authenticated user.
 <br>
 Add or create middleware to log all incoming requests.
 
-<h2>Observations</h2>
+<h3>Observations</h3>
 Data persistence can occur via JSON.
 Anyone who integrates with a bank, whether relational or not, will receive extra points.
 
