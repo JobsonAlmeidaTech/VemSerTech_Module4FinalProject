@@ -26,7 +26,7 @@ The course lasted about 6 months with synchronous classes every Monday, Wednesda
 
 ## Purpose 
 
-At the end of the fourth module, students were divided into groups and were challenged to build a markplace API. Therefore, the group I was part of decided to build an API for a book marketplace called ABC Livros. This API was built using the nodejs framework and several concepts such as middleware, authenticated routes using the jwt package and database administration using mongoose as ODM (Object Document Mapping) were applied to manage the MongoDB database.
+At the end of the fourth module, students were divided into groups and were challenged to build a markplace API. Therefore, the group I was part of decided to build an API for a book marketplace called ABC Livros. This API was built using the nodejs framework and several concepts was applied such as middleware, authenticated routes through jwt token and database administration through mongoose as ODM (Object Document Mapping) to manage the MongoDB database.
 
 More about the specified requirements for this project can be read in the document below written by the module professor.
 
